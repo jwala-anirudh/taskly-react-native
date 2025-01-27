@@ -20,12 +20,12 @@ type CountdownStatus = {
   distance: ReturnType<typeof intervalToDuration>;
 };
 
-type PersistedCountdownState = {
+export type PersistedCountdownState = {
   currentNotificationId: string | undefined;
   completedAtTimestamps: number[];
 };
 
-const countdownStorageKey = "taskly-countdown";
+export const countdownStorageKey = "taskly-countdown";
 
 // 10 seconds in milliseconds from now
 const frequency = 10 * 1000;
