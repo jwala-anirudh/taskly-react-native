@@ -1,7 +1,7 @@
-import { Tabs } from "expo-router";
-import Feather from "@expo/vector-icons/Feather";
 import AntDesign from "@expo/vector-icons/AntDesign";
+import Feather from "@expo/vector-icons/Feather";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
+import { Tabs } from "expo-router";
 import { theme } from "../theme";
 
 export default function Layout() {

@@ -1,15 +1,18 @@
-import { intervalToDuration, isBefore, set } from "date-fns";
+import { intervalToDuration, isBefore } from "date-fns";
 import * as Device from "expo-device";
+import * as Haptics from "expo-haptics";
 import * as Notifications from "expo-notifications";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
+  ActivityIndicator,
   Alert,
+  Dimensions,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
-  ActivityIndicator,
 } from "react-native";
+import ConfettiCannon from "react-native-confetti-cannon";
 import { TimeSegment } from "../../components/TimeSegment";
 import { theme } from "../../theme";
 import { registerForPushNotificationsAsync } from "../../utils/registerForPushNotificationsAsync";
@@ -27,10 +30,11 @@ export type PersistedCountdownState = {
 
 export const countdownStorageKey = "taskly-countdown";
 
-// 10 seconds in milliseconds from now
-const frequency = 10 * 1000;
+// 2 weeks
+const frequency = 14 * 24 * 60 * 60 * 1000;
 
 export default function CounterScreen() {
+  const confettiRef = useRef<any>();
   const [isLoading, setIsLoading] = useState(true);
   const [countdownState, setCountdownState] =
     useState<PersistedCountdownState>();
@@ -42,6 +46,8 @@ export default function CounterScreen() {
   const lastCompletedTimestamp = countdownState?.completedAtTimestamps[0];
 
   const scheduleNotification = async () => {
+    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+    confettiRef?.current?.start();
     let pushNotificationid;
     const result = await registerForPushNotificationsAsync();
     if (result === "granted") {
@@ -175,6 +181,13 @@ export default function CounterScreen() {
       >
         <Text style={styles.buttonText}>I've done the thing!</Text>
       </TouchableOpacity>
+      <ConfettiCannon
+        ref={confettiRef}
+        count={50}
+        origin={{ x: Dimensions.get("window").width / 2, y: -30 }}
+        autoStart={false}
+        fadeOut={true}
+      />
     </View>
   );
 }

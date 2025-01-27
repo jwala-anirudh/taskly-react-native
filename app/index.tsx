@@ -1,3 +1,4 @@
+import * as Haptics from "expo-haptics";
 import { useEffect, useState } from "react";
 import {
   FlatList,
@@ -10,7 +11,6 @@ import {
 import { ShoppingListItem } from "../components/ShoppingListItem";
 import { theme } from "../theme";
 import { getFromStorage, saveToStorage } from "../utils/storage";
-import * as Haptics from "expo-haptics";
 
 type ShoppingListItemType = {
   id: string;
