@@ -2,7 +2,7 @@
 
 Taskly is a sophisticated React Native application developed using Expo. It offers a seamless user experience with features including a dynamic shopping list and a countdown timer equipped with push notifications. Designed for efficiency and ease of use, Taskly ensures that your tasks are managed effortlessly.
 
-[Watch demo video on YouTube](https://youtube.com/shorts/SzUEV8jEryM){:target="_blank"}
+[Watch demo video on YouTube](https://youtube.com/shorts/SzUEV8jEryM)
 
 ## Features
 
